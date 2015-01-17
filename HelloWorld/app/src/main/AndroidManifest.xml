@@ -17,6 +17,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/title_activity_main" >
+
+            <intent-filter>
+                <action android:name="ABRIR_MAIN_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
     </application>
 
