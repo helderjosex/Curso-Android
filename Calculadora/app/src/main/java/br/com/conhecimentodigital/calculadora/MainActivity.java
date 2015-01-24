@@ -6,18 +6,24 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
-    //private EditText display;
+    private EditText display;
+    //private TextView displayText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //display = (EditText)findViewById(R.id.display);
+        display = (EditText) findViewById(R.id.display);
+        //displayText = (TextView) findViewById(R.id.displayText);
+
+
     }
 
 
@@ -44,8 +50,19 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-    /*public void updateDisplay(View v){
+    public void updateDisplay(View v){
+
         display.setText(display.getText().toString() + ((Button)v).getText());
-    }*/
+        //displayText.setText(displayText.getText().toString() + ((Button)v).getText());
+    }
+
+    public void somar(View v){
+
+        String value= display.getText().toString();
+        int finalValue=Integer.parseInt(value);
+
+        String novoValor = "0";
+        display.setText(novoValor);
+    }
 
 }
