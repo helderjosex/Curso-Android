@@ -23,8 +23,10 @@
         android:id="@+id/inputLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="63dp"
-        android:text="Login"
-        android:textColor="#ffffffff" />
+        android:textColor="#ffffffff"
+        android:hint="Usuário"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#ffffffff" />
 
     <EditText
         android:layout_width="match_parent"
@@ -35,8 +37,10 @@
         android:layout_below="@+id/inputLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:text="Senha"
-        android:textColor="#ffffffff" />
+        android:textColor="#ffffffff"
+        android:hint="Senha"
+        android:textColorHint="#ffffffff"
+        android:imeOptions="actionDone"/>
 
     <Button
         android:layout_width="match_parent"
@@ -45,7 +49,8 @@
         android:id="@+id/btnEntrar"
         android:layout_below="@+id/inputPassword"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="44dp" />
+        android:layout_marginTop="44dp"
+        android:onClick="login" />
 
     <TextView
         android:layout_width="wrap_content"
