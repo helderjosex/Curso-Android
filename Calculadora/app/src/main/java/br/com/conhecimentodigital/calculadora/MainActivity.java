@@ -12,16 +12,19 @@ import android.widget.TextView;
 
 public class MainActivity extends ActionBarActivity {
 
-    private EditText display;
-    //private TextView displayText;
+    //private EditText display;
+    private TextView display;
+    private double n1,n2,resultado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        display = (EditText) findViewById(R.id.display);
-        //displayText = (TextView) findViewById(R.id.displayText);
+        //display = (EditText) findViewById(R.id.display);
+        display = (TextView) findViewById(R.id.displayText);
+        //num1 = (Button) findViewById(R.id.num1);
 
 
     }
@@ -52,17 +55,20 @@ public class MainActivity extends ActionBarActivity {
 
     public void updateDisplay(View v){
 
+        //display.setText(display.getText().toString() + ((Button)v).getText());
         display.setText(display.getText().toString() + ((Button)v).getText());
-        //displayText.setText(displayText.getText().toString() + ((Button)v).getText());
     }
 
     public void somar(View v){
 
-        String value= display.getText().toString();
-        int finalValue=Integer.parseInt(value);
 
-        String novoValor = "0";
-        display.setText(novoValor);
+        n1 = Double.parseDouble(display.getText().toString()+ ((Button)v).getText());
+        n2 = Double.parseDouble(display.getText().toString()+ ((Button)v).getText());
+
+        resultado = n1 + n2;
+
+        display.setText(String.valueOf(resultado));
+
     }
 
 }
