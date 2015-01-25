@@ -57,6 +57,10 @@ public class MainActivity extends ActionBarActivity {
         });
     }
 
+    public void listarAlunos(){
+        
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

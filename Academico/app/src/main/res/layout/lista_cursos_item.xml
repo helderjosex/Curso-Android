@@ -33,6 +33,38 @@
             android:textSize="14sp"
             android:text="Status"/>
 
+
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical">
+
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:id="@+id/imageView3"
+                    android:src="@drawable/lista_alunos"
+                    android:layout_column="7" />
+
+                <Button
+                    android:layout_width="195dp"
+                    android:layout_height="wrap_content"
+                    android:text="Lista Alunos"
+                    android:id="@+id/listaAlunos"
+                    android:layout_gravity="center_vertical"
+                    android:layout_column="8" />
+            </TableRow>
+         </TableLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>
