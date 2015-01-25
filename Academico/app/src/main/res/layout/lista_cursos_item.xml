@@ -60,7 +60,8 @@
                     android:text="Lista Alunos"
                     android:id="@+id/listaAlunos"
                     android:layout_gravity="center_vertical"
-                    android:layout_column="8" />
+                    android:layout_column="8"
+                    android:onClick="listarAlunos" />
             </TableRow>
          </TableLayout>
 
