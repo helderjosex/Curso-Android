@@ -65,10 +65,12 @@ public class MainActivity extends ActionBarActivity {
 
         final ArrayList<Aluno> alunos = new ArrayList<>();
         Aluno a1 = new Aluno();
+        a1.setId(1L);
         a1.setNome("Helder");
         a1.setCpf("000.000.000-01");
 
         Aluno a2 = new Aluno();
+        a2.setId(2L);
         a2.setNome("Aluno Fulano de tal");
         a2.setCpf("000.000.000-02");
 
