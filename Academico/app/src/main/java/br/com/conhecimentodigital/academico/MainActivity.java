@@ -17,7 +17,6 @@ import java.util.List;
 public class MainActivity extends ActionBarActivity {
 
     private ListView listView;
-    private ListView listViewAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,44 +57,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-
-    public void listarAlunos(View view){
-
-        listViewAlunos = (ListView) findViewById(R.id.listViewAlunos);
-
-        final ArrayList<Aluno> alunos = new ArrayList<>();
-        Aluno a1 = new Aluno();
-        a1.setId(1L);
-        a1.setNome("Helder");
-        a1.setCpf("000.000.000-01");
-
-        Aluno a2 = new Aluno();
-        a2.setId(2L);
-        a2.setNome("Aluno Fulano de tal");
-        a2.setCpf("000.000.000-02");
-
-        alunos.add(a1);
-        alunos.add(a2);
-
-        Toast.makeText(this, "Lista de Alunos!", Toast.LENGTH_LONG).show();
-
-
-        final ListaAlunoAdapter adapter = ListaAlunoAdapter.getInstance(this,alunos);
-        listViewAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-                Aluno aluno = (Aluno) adapter.getItem(position);
-
-                Intent intent = new Intent(MainActivity.this, AlunoActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("aluno", aluno);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

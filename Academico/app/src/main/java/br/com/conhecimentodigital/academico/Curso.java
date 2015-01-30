@@ -1,6 +1,7 @@
 package br.com.conhecimentodigital.academico;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,6 +14,7 @@ public class Curso implements Serializable {
     private int cargaHoraria;
     private Date inicio;
     private Date termino;
+    //private ArrayList<Aluno>;
 
     public Long getId() {
         return id;
