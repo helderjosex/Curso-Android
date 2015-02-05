@@ -5,26 +5,30 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
+
 
 public class AlunoActivity extends ActionBarActivity {
 
-    private TextView txtNomeAluno;
+    private ListView listaAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_aluno);
 
-        txtNomeAluno = (TextView) findViewById(R.id.txtNomeAluno);
+        setTitle("Alunos");
 
-        Intent intent = getIntent();
-        Aluno aluno = (Aluno) intent.getSerializableExtra("aluno");
+        listaAlunos = (ListView) findViewById(R.id.listaAlunos);
 
-        txtNomeAluno.setText(aluno.getNome());
+        ArrayList<Aluno> alunos = (ArrayList<Aluno>) getIntent().getSerializableExtra("alunos");
+        ListaAlunoAdapter adapter = ListaAlunoAdapter.getInstance(this, alunos);
+        listaAlunos.setAdapter(adapter);
 
     }
 

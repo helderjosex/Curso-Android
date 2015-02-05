@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by fernandooliveira on 24/01/15.
+ * Created by helderjose on 24/01/15.
  */
 public class Curso implements Serializable {
     private Long id;
@@ -14,7 +14,7 @@ public class Curso implements Serializable {
     private int cargaHoraria;
     private Date inicio;
     private Date termino;
-    //private ArrayList<Aluno>;
+
 
     public Long getId() {
         return id;

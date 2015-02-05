@@ -1,5 +1,6 @@
 package br.com.conhecimentodigital.academico;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import java.util.ArrayList;
 public class CursoActivity extends ActionBarActivity {
 
     private TextView txtNomeCurso;
-    private ListView listViewAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,39 +58,42 @@ public class CursoActivity extends ActionBarActivity {
 
     public void listarAlunos(View view){
 
-        listViewAlunos = (ListView) findViewById(R.id.listViewAlunos);
+        ProgressDialog dialog = new ProgressDialog(this);
+        dialog.setMessage("Buscando lista de alunos!");
+        dialog.setCancelable(false);
+        dialog.show();
 
-        final ArrayList<Aluno> alunos = new ArrayList<>();
+
+        ArrayList<Aluno> alunos = new ArrayList<>();
+
         Aluno a1 = new Aluno();
         a1.setId(1L);
-        a1.setNome("Helder");
-        a1.setCpf("000.000.000-01");
+        a1.setNome("Hermogenes");
+        a1.setCpf("43928493898139");
 
         Aluno a2 = new Aluno();
         a2.setId(2L);
-        a2.setNome("Aluno Fulano de tal");
-        a2.setCpf("000.000.000-02");
+        a2.setNome("Cesar");
+        a2.setCpf("78126371263781");
+
+        Aluno a3 = new Aluno();
+        a3.setId(3L);
+        a3.setNome("Hélder");
+        a3.setCpf("78126371263781");
 
         alunos.add(a1);
         alunos.add(a2);
+        alunos.add(a3);
 
-        Toast.makeText(this, "Lista de Alunos!", Toast.LENGTH_LONG).show();
+        dialog.dismiss();
 
+        Intent i = new Intent(this, AlunoActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("alunos", alunos);
 
-        /*final ListaAlunoAdapter adapter = ListaAlunoAdapter.getInstance(this,alunos);
-        listViewAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        i.putExtras(bundle);
 
-                Aluno aluno = (Aluno) adapter.getItem(position);
-
-                Intent intent = new Intent(CursoActivity.this, AlunoActivity.class);
-                Bundle extras = new Bundle();
-                extras.putSerializable("aluno", aluno);
-                intent.putExtras(extras);
-                startActivity(intent);
-            }
-        });*/
+        startActivity(i);
     }
 
 }

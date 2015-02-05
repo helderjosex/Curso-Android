@@ -10,6 +10,7 @@ public class Aluno implements Serializable {
     private Long id;
     private String nome;
     private String cpf;
+    private String foto;
 
 
     public Long getId() {
@@ -34,5 +35,13 @@ public class Aluno implements Serializable {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }
