@@ -9,5 +9,7 @@
     <string name="form">Formulário</string>
     <string name="title_activity_alunos">Lista de Alunos</string>
     <string name="listaAlunos">listaAlunos</string>
+    <string name="title_activity_tela2">Tela2Activity</string>
+    <string name="btn_tela2">Tela 2</string>
 
 </resources>
