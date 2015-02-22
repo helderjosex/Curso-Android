@@ -1,15 +1,18 @@
 package br.com.cd.threads;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import br.com.cd.threads.activities.AlunoActivity;
+import br.com.cd.threads.tasks.DownloadImageTask;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -18,6 +21,7 @@ public class MainActivity extends ActionBarActivity {
     private TextView txtPercentual;
     private Handler handler;
     private ImageView imageView;
+    private TextView quantidadeAlunos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,12 @@ public class MainActivity extends ActionBarActivity {
         txtPercentual =(TextView) findViewById(R.id.txtPercentual);
         imageView = (ImageView) findViewById(R.id.imageView);
         handler = new Handler();
+
+        quantidadeAlunos = (TextView) findViewById(R.id.qtdAlunos);
+
+        SharedPreferences preferences = getSharedPreferences("prefs", MODE_PRIVATE);
+        quantidadeAlunos.setText(String.valueOf(preferences.getInt("quantidade_alunos",0)));
+
     }
 
 
@@ -72,6 +82,13 @@ public class MainActivity extends ActionBarActivity {
     public void downloadImageAsyncTask(View v){
 
         new DownloadImageTask(MainActivity.this).execute(imageView);
+
+    }
+
+    public void listAlunos(View v){
+
+        Intent intent = new Intent(this, AlunoActivity.class);
+        startActivity(intent);
 
     }
 

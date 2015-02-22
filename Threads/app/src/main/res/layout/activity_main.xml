@@ -36,5 +36,16 @@
         android:onClick="downloadImageAsyncTask"
         android:text="Go With AsyncTask" />
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="listAlunos"
+        android:text="Lista Alunos" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/qtdAlunos"/>
+
 
 </LinearLayout>
