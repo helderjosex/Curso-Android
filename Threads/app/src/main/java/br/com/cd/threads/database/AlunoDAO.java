@@ -47,16 +47,54 @@ public class AlunoDAO  {
 
     }
 
+    public Cursor findAllUri(String sql, String [] selectionArgs){
+
+        db = sqlHelper.getReadableDatabase();
+        Cursor cursor = db.rawQuery(sql, selectionArgs);
+
+
+        return cursor;
+
+    }
+
     public void insert (Aluno aluno){
         db = sqlHelper.getWritableDatabase();
         db.insert(sqlHelper.ALUNO_TABLE_NAME,null,getContentValues(aluno));
         db.close();
     }
 
+    public long insertUri(ContentValues values) {
+        db = sqlHelper.getWritableDatabase();
+        long count = db.insert(sqlHelper.ALUNO_TABLE_NAME, null, values);
+        db.close();
+
+        return count;
+    }
+
     public void update (Aluno aluno){
         db = sqlHelper.getWritableDatabase();
-        db.update(SQLHelper.ALUNO_TABLE_NAME, getContentValues(aluno), "id = ?", new String[]{String.valueOf(aluno.getId())});
+        db.update(sqlHelper.ALUNO_TABLE_NAME, getContentValues(aluno), "id = ?", new String[]{String.valueOf(aluno.getId())});
         db.close();
+    }
+
+    public void updateUri (String selection, String[] SelectionArgs, ContentValues values){
+        db = sqlHelper.getWritableDatabase();
+        db.update(SQLHelper.ALUNO_TABLE_NAME, values, selection, SelectionArgs);
+        db.close();
+    }
+
+    public int delete (Aluno aluno){
+        int count = db.delete(sqlHelper.ALUNO_TABLE_NAME,"id = ?", new String[]{String.valueOf(aluno.getId())});
+        db.close();
+
+        return count;
+    }
+
+    public int remove (String selection, String[] SelectionArgs){
+        int count = db.delete(sqlHelper.ALUNO_TABLE_NAME,"id = ?", SelectionArgs);
+        db.close();
+
+        return count;
     }
 
     private ContentValues getContentValues(Aluno aluno) {
