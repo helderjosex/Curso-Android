@@ -78,7 +78,7 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-
+        // Pegar Localizacao atual
         mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
             @Override
             public void onMyLocationChange(Location location) {
@@ -97,7 +97,7 @@ public class MapsActivity extends FragmentActivity {
     }
 
     private void configPolyline() {
-        // Pegar Localizacao atual
+
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
             public void onMapClick(LatLng latlng) {
                 points.add(latlng);
