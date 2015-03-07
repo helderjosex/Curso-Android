@@ -1,5 +1,9 @@
 package br.com.conhecimentodigital.location;
 
+import android.graphics.Color;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -7,16 +11,30 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polygon;
+import com.google.android.gms.maps.model.PolygonOptions;
+import com.google.android.gms.maps.model.Polyline;
+import com.google.android.gms.maps.model.PolylineOptions;
+
+import org.apache.http.util.LangUtils;
+
+import java.util.ArrayList;
 
 public class MapsActivity extends FragmentActivity {
 
     private GoogleMap mMap; // Might be null if Google Play services APK is not available.
+
+    private ArrayList<LatLng> points;
+    private Polyline polyline;
+    private Polygon polygon;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
         setUpMapIfNeeded();
+
+
     }
 
     @Override
@@ -60,8 +78,76 @@ public class MapsActivity extends FragmentActivity {
      * This should only be called once and when we are sure that {@link #mMap} is not null.
      */
     private void setUpMap() {
-        mMap.addMarker(new MarkerOptions().position(new LatLng(0, 0)).title("Marker"));
+
+        mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+            @Override
+            public void onMyLocationChange(Location location) {
+                mMap.addMarker(
+                        new MarkerOptions()
+                                .position(new LatLng(location.getLatitude(), location.getLongitude()))
+                                .title("Marker")
+                );
+            }
+        });
+
+        configPolyline();
+
         mMap.setMyLocationEnabled(true);
 
+    }
+
+    private void configPolyline() {
+        // Pegar Localizacao atual
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
+            public void onMapClick(LatLng latlng) {
+                points.add(latlng);
+
+                if(points.size() > 1){
+
+                    if(polyline != null){
+                        polyline.remove();
+                    }
+
+                    PolylineOptions options = new PolylineOptions();
+                    options.color(Color.RED);
+                    options.geodesic(true);
+
+                    for (LatLng l: points){
+
+                        options.add(l);
+                    }
+                    polyline = mMap.addPolyline(options);
+                }
+
+            }
+        });
+    }
+
+    private void configPolygon() {
+        mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener(){
+            public void onMapClick(LatLng latlng) {
+                points.add(latlng);
+
+                if(points.size() > 1){
+
+                    if(polygon != null){
+                        polygon.remove();
+                    }
+
+                    PolygonOptions options = new PolygonOptions();
+                    options.strokeColor(Color.RED);
+                    // Cor definida no values/colors.xml
+                    options.fillColor(getResources().getColor(R.color.green_alpha));
+                    options.geodesic(true);
+
+                    for (LatLng l: points){
+
+                        options.add(l);
+                    }
+                    polygon= mMap.addPolygon(options);
+                }
+
+            }
+        });
     }
 }
