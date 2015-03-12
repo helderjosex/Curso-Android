@@ -31,6 +31,7 @@ public class AlunosContentProvider extends ContentProvider {
     }
 
     public AlunosContentProvider() {
+
         dao = new AlunoDAO(getContext());
     }
 
