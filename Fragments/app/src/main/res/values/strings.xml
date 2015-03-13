@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">Fragments</string>
-
-    <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_hotel_delhalhe">HotelDelhalheActivity</string>
+    <string name="action_settings">Configurações</string>
+    <string name="title_activity_hotel_delhalhe">Hotel Delhalhes</string>
+    <string name="acao_pesquisar">Pesquisar</string>
+    <string name="acao_novo">Novo</string>
+    <string name="acao_info">Info</string>
+    <string name="hint_busca">Procurar por Hotel</string>
+    <string name="sobre_titulo">Dominando Android</string>
+    <string name="sobre_mensagem">Desenvolvido por Helder</string>
+    <string name="sobre_botao_site">Site</string>
 </resources>

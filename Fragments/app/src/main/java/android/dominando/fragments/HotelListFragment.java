@@ -1,7 +1,7 @@
 package android.dominando.fragments;
 
 import android.app.Activity;
-import android.app.ListFragment;
+import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -21,12 +21,10 @@ public class HotelListFragment extends ListFragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+
         mHoteis = carregarHoteis();
-        mAdapter = new ArrayAdapter<Hotel>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                mHoteis);
-        setListAdapter(mAdapter);
+        limparBusca();
+
     }
 
     private List<Hotel> carregarHoteis(){
@@ -52,6 +50,40 @@ public class HotelListFragment extends ListFragment {
             AoClicarNoHotel listener = (AoClicarNoHotel)activity;
             listener.clicouNoHotel(hotel);
         }
+    }
+
+    public void buscar(String s){
+        if (s == null || s.trim().equals("")){
+            limparBusca();
+            return;
+        }
+
+        List<Hotel> hoteisEncontrados = new ArrayList<Hotel>(mHoteis);
+        for (int i = hoteisEncontrados.size()-1;i>=0;i--){
+            Hotel hotel = hoteisEncontrados.get(i);
+            if(!hotel.nome.toUpperCase().contains(s.toUpperCase())){
+                hoteisEncontrados.remove(hotel);
+            }
+        }
+
+        mAdapter = new ArrayAdapter<Hotel>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                hoteisEncontrados);
+        setListAdapter(mAdapter);
+    }
+
+    public void limparBusca(){
+        mAdapter = new ArrayAdapter<Hotel>(
+                getActivity(),
+                android.R.layout.simple_list_item_1,
+                mHoteis);
+        setListAdapter(mAdapter);
+    }
+
+    public void adicionar(Hotel hotel){
+        mHoteis.add(hotel);
+        mAdapter.notifyDataSetChanged();
     }
 
     public interface AoClicarNoHotel {
